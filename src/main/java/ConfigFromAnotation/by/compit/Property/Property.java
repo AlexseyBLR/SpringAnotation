@@ -1,3 +1,5 @@
+package Property;
+
 public final class Property {
 
     public static final class BeanProperty {

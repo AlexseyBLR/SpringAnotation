@@ -1,3 +1,5 @@
+package configure;
+
 public class Entity {
 
     private String message;

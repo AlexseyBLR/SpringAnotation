@@ -1,28 +1,30 @@
+package configure;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import Property.Property;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 
 
 @Configuration
+@PropertySource("classpath:PR.properties")
 public class ConfigurationContext {
 
-    @Bean
-    @Scope(value = "prototype")
-    @Lazy(value = true)
-    Entities entities(String message, int value) {
-        return new Entities(message, value);
-    }
+    @Autowired
+    Environment environment;
+
+//    @Bean
+//    Entities entities() {
+//        return new Entities(message, value);
+//    }
 
     @Bean
     public Entity entity() {
         Entity entity = new Entity();
-        entity.setMessage(Property.BeanProperty.MESSAGE);
+        entity.setMessage(environment.getProperty("property.message"));
         return entity;
     }
-
-
 
 
 }
